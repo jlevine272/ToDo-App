@@ -10,18 +10,18 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
 
-    var itemArray = [String]()
+    var itemArray = [Task]()
     
     let defaults = UserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let newTask = "Task 1"
+        let newTask = Task(title: "Task 1")
         
         itemArray.append(newTask)
         // Do any additional setup after loading the view.
-        if let items = defaults.array(forKey: "ToDoListArray") as? [String] {
+        if let items = defaults.array(forKey: "ToDoListArray") as? [Task] {
             itemArray = items
             print("array updated")
 
@@ -45,7 +45,7 @@ class TodoListViewController: UITableViewController {
         
         // let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
         
-        cell.textLabel?.text = itemArray[indexPath.row]
+        cell.textLabel?.text = itemArray[indexPath.row].title
         
         return cell
     }
@@ -85,8 +85,8 @@ class TodoListViewController: UITableViewController {
 //            if let items = self.defaults.array(forKey: "TodoArray") as? [Task] {
 //                self.itemArray = items
 //                print("array updated")
-
-            //self.itemArray.append(Task(title: textField.text!))
+            let newTask = Task(title: textField.text!)
+            self.itemArray.append(newTask)
 //
             
 //
