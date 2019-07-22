@@ -21,7 +21,7 @@ class TodoListViewController: UITableViewController {
         
         itemArray.append(newTask)
         // Do any additional setup after loading the view.
-        if let items = defaults.array(forKey: "ToDoListArray") as? [Task] {
+        if let items = defaults.array(forKey: "ToDoListArray2") as? [Task] {
             itemArray = items
             print("array updated")
 
@@ -47,6 +47,12 @@ class TodoListViewController: UITableViewController {
         
         cell.textLabel?.text = itemArray[indexPath.row].title
         
+        
+        cell.accessoryType = itemArray[indexPath.row].complete ? .checkmark : .none
+        
+
+        
+        
         return cell
     }
     
@@ -55,9 +61,10 @@ class TodoListViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(itemArray[indexPath.row])
+        //print(itemArray[indexPath.row])
         
-        
+        itemArray[indexPath.row].complete = !(itemArray[indexPath.row].complete)
+        tableView.reloadData()
         
         
         if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
@@ -78,9 +85,6 @@ class TodoListViewController: UITableViewController {
         
         
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-//            let newTask = Task(title: textField.text!)
-//
-//            self.itemArray.append(newTask)
 //
 //            if let items = self.defaults.array(forKey: "TodoArray") as? [Task] {
 //                self.itemArray = items
@@ -88,10 +92,10 @@ class TodoListViewController: UITableViewController {
             let newTask = Task(title: textField.text!)
             self.itemArray.append(newTask)
 //
-            
+            self.defaults.set(self.itemArray, forKey: "ToDoListArray2")
 //
             self.tableView.reloadData()
-            self.defaults.set(self.itemArray, forKey: "TodoListArray")
+            
             }
 //            else {
 //                print("update failed")
