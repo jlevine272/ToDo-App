@@ -78,9 +78,9 @@ class TodoListViewController: UITableViewController {
         
         
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-//            let newTask = Task(title: textField.text!)
-//
-//            self.itemArray.append(newTask)
+            let newTask = textField.text!
+
+            self.itemArray.append(newTask)
 //
 //            if let items = self.defaults.array(forKey: "TodoArray") as? [Task] {
 //                self.itemArray = items
@@ -90,8 +90,9 @@ class TodoListViewController: UITableViewController {
 //
             
 //
+            
+            self.defaults.set(self.itemArray, forKey: "ToDoListArray")
             self.tableView.reloadData()
-            self.defaults.set(self.itemArray, forKey: "TodoListArray")
             }
 //            else {
 //                print("update failed")
