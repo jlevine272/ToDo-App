@@ -86,7 +86,7 @@ class TodoListViewController: UITableViewController {
 //                self.itemArray = items
 //                print("array updated")
 
-            self.itemArray.append(Task(title: textField.text!))
+            //self.itemArray.append(Task(title: textField.text!))
 //
             
 //
